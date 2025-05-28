@@ -3,19 +3,18 @@ package com.besmartexim.service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.besmartexim.database.entity.MstContinent;
 import com.besmartexim.database.entity.MstCountry;
+import com.besmartexim.database.repository.MstContinentRepository;
 import com.besmartexim.database.repository.MstCountryRepository;
-import com.besmartexim.dto.request.CountryByTradeRequest;
 import com.besmartexim.dto.request.MstCountryRequest;
 import com.besmartexim.dto.response.Country;
+import com.besmartexim.dto.response.CountryByContinentResponse;
 import com.besmartexim.dto.response.MstCountryResponse;
 import com.besmartexim.exception.ServiceException;
 
@@ -24,6 +23,9 @@ public class MstCountryService {
 	
 	@Autowired
 	private MstCountryRepository mstCountryRepository;
+	
+	@Autowired
+	private MstContinentRepository mstContinentRepository;
 	
 	public void countryCreate (MstCountryRequest request, Long accessedBy) throws Exception{
 		
@@ -155,5 +157,35 @@ public class MstCountryService {
 			return mstCountryResponse;
 				
 		}
+	
+	
+    public List<CountryByContinentResponse> countryListContinentWise(String tradeType) throws Exception{
+    	List<CountryByContinentResponse> responseList = new ArrayList<CountryByContinentResponse>();
+		
+    	List<MstContinent> srclist = mstContinentRepository.findAll();
+    	
+    	if(null!=srclist && !srclist.isEmpty()) {
+    		CountryByContinentResponse res = null;
+    		List<MstCountry> countryList = null;
+    		
+			for(MstContinent mstContinent : srclist) {
+				res = new CountryByContinentResponse();
+				res.setContinentId(mstContinent.getId());
+				res.setContinentName(mstContinent.getName());
+				
+				if(tradeType.equalsIgnoreCase("I"))
+					countryList = mstCountryRepository.findByIsImportAndIsActive("Y","Y");
+				else
+					countryList = mstCountryRepository.findByIsExportAndIsActive("Y","Y");
+				
+				res.setCountryList(countryList);
+				responseList.add(res);
+			}
+			
+		}
+    	
+		return responseList;
+			
+	}
 
 }

@@ -1,5 +1,7 @@
 package com.besmartexim.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.besmartexim.dto.request.CountryByTradeRequest;
 import com.besmartexim.dto.request.MstCountryRequest;
+import com.besmartexim.dto.response.CountryByContinentResponse;
 import com.besmartexim.dto.response.MstCountryResponse;
 import com.besmartexim.service.MstCountryService;
 
@@ -65,6 +68,17 @@ public class MstCountryController {
 		MstCountryResponse mstCountryResponse = mstCountryService.countryListByTrade(tradeType,accessedBy);
 		
 		return new ResponseEntity<>(mstCountryResponse, HttpStatus.OK);
+		
+	}
+	
+	
+	@RequestMapping(value = "/countrylistbycontinent/{tradeType}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> countryListByContinent(@PathVariable String tradeType, @RequestHeader(value="accessedBy", required=true) Long accessedBy ) throws Exception{
+		logger.info("url = countrylistbycontinent accessedBy= "+accessedBy);
+			
+		List<CountryByContinentResponse> countryResponse = mstCountryService.countryListContinentWise(tradeType);
+		
+		return new ResponseEntity<>(countryResponse, HttpStatus.OK);
 		
 	}
 
