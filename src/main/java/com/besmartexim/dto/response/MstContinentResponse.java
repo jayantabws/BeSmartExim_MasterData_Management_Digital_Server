@@ -13,6 +13,5 @@ public class MstContinentResponse {
 	public void setContinentList(List<Continent> continentList) {
 		this.continentList = continentList;
 	}
-	
-	
- }
+
+}

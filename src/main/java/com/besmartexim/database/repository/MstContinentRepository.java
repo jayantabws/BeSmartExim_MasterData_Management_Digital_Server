@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.besmartexim.database.entity.MstContinent;
 
-
 @Repository
 public interface MstContinentRepository extends JpaRepository<MstContinent, Long> {
 

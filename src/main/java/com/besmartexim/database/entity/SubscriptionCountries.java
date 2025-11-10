@@ -11,18 +11,18 @@ import javax.persistence.Table;
 @Table(name = "subscription_countries")
 
 public class SubscriptionCountries {
-	
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "subscription_id")
 	private Long subscriptionid;
-	
+
 	@Column(name = "country_id")
 	private String country_id;
-	
+
 	@Column(name = "continent_id")
 	private String continent_id;
 
@@ -57,7 +57,5 @@ public class SubscriptionCountries {
 	public void setContinent_id(String continent_id) {
 		this.continent_id = continent_id;
 	}
-
-	
 
 }

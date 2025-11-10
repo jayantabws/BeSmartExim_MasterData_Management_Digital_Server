@@ -2,14 +2,11 @@ package com.besmartexim.database.repository;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import com.besmartexim.database.entity.MstSubscription;
 
-
-
-public interface MstSubscriptionRepository  extends CrudRepository<MstSubscription, Long> {
+public interface MstSubscriptionRepository extends CrudRepository<MstSubscription, Long> {
 
 	List<MstSubscription> findByIsCustomAndIsActive(String isCustom, String isActive);
 

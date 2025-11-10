@@ -1,4 +1,5 @@
 package com.besmartexim.database.entity;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -15,34 +16,34 @@ public class SubscriptionDetails {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "subscription_id")
 	private Long subscriptionid;
-	
+
 	@Column(name = "short_key")
 	private String short_key;
-	
+
 	@Column(name = "key_fullform")
 	private String key_fullform;
-	
+
 	@Column(name = "key_desc")
 	private String key_desc;
-	
+
 	@Column(name = "key_value")
 	private String key_value;
-	
+
 	@Column(name = "value_desc")
 	private String value_desc;
-	
+
 	@Column(name = "created_by")
 	private Long created_by;
-	
+
 	@Column(name = "created_date")
 	private Date created_date;
-	
+
 	@Column(name = "modified_by")
 	private Long modified_by;
-	
+
 	@Column(name = "modified_date")
 	private Date modified_date;
 
@@ -134,6 +135,4 @@ public class SubscriptionDetails {
 		this.modified_date = modified_date;
 	}
 
-	
-	
 }

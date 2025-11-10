@@ -1,4 +1,5 @@
 package com.besmartexim.database.entity;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -16,34 +17,34 @@ public class MstSubscription {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "price")
 	private Long price;
-	
+
 	@Column(name = "validity_in_day")
 	private Integer validityInDay;
-	
+
 	@Column(name = "is_custom")
 	private String isCustom;
-	
+
 	@Column(name = "is_active")
 	private String isActive;
-	
+
 	@Column(name = "created_by")
 	private Long createdBy;
-	
+
 	@Column(name = "created_date")
 	private Date createdDate;
-	
+
 	@Column(name = "modified_by")
 	private Long modifiedBy;
-	
+
 	@Column(name = "modified_date")
 	private Date modifiedDate;
 
@@ -78,8 +79,6 @@ public class MstSubscription {
 	public void setPrice(Long price) {
 		this.price = price;
 	}
-
-
 
 	public Integer getValidityInDay() {
 		return validityInDay;
@@ -137,6 +136,4 @@ public class MstSubscription {
 		this.modifiedDate = modifiedDate;
 	}
 
-	
-	
 }

@@ -1,4 +1,5 @@
 package com.besmartexim.database.entity;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -15,76 +16,76 @@ public class MstCountry {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "continent_id")
 	private Long continentId;
-	
+
 	@Column(name = "is_export")
 	private String isExport;
-	
+
 	@Column(name = "is_import")
 	private String isImport;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "shortcode")
 	private String shortcode;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "image")
 	private String image;
-	
+
 	@Column(name = "sample_file_import")
 	private String sampleFileImport;
-	
+
 	@Column(name = "sample_file_export")
 	private String sampleFileExport;
-	
+
 	@Column(name = "is_active")
 	private String isActive;
-	
+
 	@Column(name = "created_by")
 	private Long createdBy;
-	
+
 	@Column(name = "created_date")
 	private Date createdDate;
-	
+
 	@Column(name = "modified_by")
 	private Long modifiedBy;
-	
+
 	@Column(name = "modified_date")
 	private Date modifiedDate;
-	
+
 	@Column(name = "export_from")
 	private Date exportFrom;
-	
+
 	@Column(name = "export_upto")
 	private Date exportUpto;
-	
+
 	@Column(name = "export_records")
 	private Long exportRecords;
-	
+
 	@Column(name = "import_from")
 	private Date importFrom;
-	
+
 	@Column(name = "import_upto")
 	private Date importUpto;
-	
+
 	@Column(name = "import_records")
 	private Long importRecords;
-	
+
 	@Column(name = "import_point")
 	private Long importPointWeightage;
-	
+
 	@Column(name = "export_point")
 	private Long exportPointWeightage;
-	
+
 	@Column(name = "exporter_for_import")
 	private String exporterForImport;
-	
+
 	@Column(name = "importer_for_export")
 	private String importerForExport;
 
@@ -287,8 +288,5 @@ public class MstCountry {
 	public void setImporterForExport(String importerForExport) {
 		this.importerForExport = importerForExport;
 	}
-	
-	
-	
-	
+
 }

@@ -10,15 +10,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "site_settings")
 public class SiteSettings {
-	
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "is_maintanance")
 	private String isMaintanance;
-	
+
 	@Column(name = "site_message")
 	private String siteMessage;
 
@@ -44,7 +44,6 @@ public class SiteSettings {
 
 	public void setSiteMessage(String siteMessage) {
 		this.siteMessage = siteMessage;
-	}	
-	
+	}
 
 }

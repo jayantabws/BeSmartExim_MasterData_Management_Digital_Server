@@ -10,27 +10,27 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "team_members")
 public class TeamMembers {
-	
+
 	@Id
 	@Column(name = "ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "first_name")
 	private String firstName;
-	
+
 	@Column(name = "last_name")
 	private String lastName;
-	
+
 	@Column(name = "email")
 	private String email;
-	
+
 	@Column(name = "is_active")
-	private Long isActive;	
-	
+	private Long isActive;
+
 	@Column(name = "branch_id")
 	private Long branchId;
-	
+
 	@Column(name = "brance_name")
 	private String branchName;
 
@@ -89,11 +89,5 @@ public class TeamMembers {
 	public void setBranchName(String branchName) {
 		this.branchName = branchName;
 	}
-	
-	
-	
-	
-	
-	
 
 }

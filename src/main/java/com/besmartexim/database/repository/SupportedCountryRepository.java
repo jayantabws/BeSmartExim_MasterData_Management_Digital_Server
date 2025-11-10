@@ -7,9 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.besmartexim.database.entity.SubscriptionCountries;
 
-
 @Repository
-public interface SupportedCountryRepository  extends JpaRepository<SubscriptionCountries, Long> {
+public interface SupportedCountryRepository extends JpaRepository<SubscriptionCountries, Long> {
 
 	void deleteBySubscriptionid(Long subscription_id);
 

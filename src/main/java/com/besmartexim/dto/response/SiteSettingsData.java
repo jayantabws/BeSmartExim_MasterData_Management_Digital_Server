@@ -1,11 +1,11 @@
 package com.besmartexim.dto.response;
 
 public class SiteSettingsData {
-	
+
 	private Long id;
-	
+
 	private String isMaintanance;
-	
+
 	private String siteMessage;
 
 	public Long getId() {
@@ -30,7 +30,6 @@ public class SiteSettingsData {
 
 	public void setSiteMessage(String siteMessage) {
 		this.siteMessage = siteMessage;
-	}	
-	
+	}
 
 }

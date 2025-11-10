@@ -1,9 +1,9 @@
 package com.besmartexim.dto.request;
 
 public class SubscriptionListRequest {
-	
+
 	private String isCustom;
-	
+
 	private String isActive;
 
 	public String getIsCustom() {
@@ -21,7 +21,5 @@ public class SubscriptionListRequest {
 	public void setIsActive(String isActive) {
 		this.isActive = isActive;
 	}
-	
-	
 
 }

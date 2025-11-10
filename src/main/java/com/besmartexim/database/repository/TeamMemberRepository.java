@@ -9,7 +9,7 @@ import com.besmartexim.database.entity.TeamMembers;
 
 @Repository
 public interface TeamMemberRepository extends JpaRepository<TeamMembers, Long> {
-	
+
 	List<TeamMembers> findAllByOrderByIdDesc();
 
 }

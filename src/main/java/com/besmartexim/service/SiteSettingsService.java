@@ -16,31 +16,31 @@ import com.besmartexim.dto.response.SiteSettingsResponse;
 
 @Service
 public class SiteSettingsService {
-	
+
 	@Autowired
 	private SiteSettingsRepository siteSettingsRepository;
 
-	public SiteSettingsResponse settingsList() throws Exception{	
-			
+	public SiteSettingsResponse settingsList() throws Exception {
+
 		SiteSettingsResponse siteSettingsResponse = new SiteSettingsResponse();
-		
+
 		List<SiteSettings> srclist = siteSettingsRepository.findAll();
-		
+
 		List<SiteSettingsData> targetList = new ArrayList<SiteSettingsData>();
-		
-		if(null!=srclist && !srclist.isEmpty()) {
-			
-			for(SiteSettings siteSettings:srclist) {
-				SiteSettingsData  siteSettingsData= new SiteSettingsData();
-				BeanUtils.copyProperties(siteSettings, siteSettingsData);		
+
+		if (null != srclist && !srclist.isEmpty()) {
+
+			for (SiteSettings siteSettings : srclist) {
+				SiteSettingsData siteSettingsData = new SiteSettingsData();
+				BeanUtils.copyProperties(siteSettings, siteSettingsData);
 				targetList.add(siteSettingsData);
 			}
 		}
-	
+
 		siteSettingsResponse.setSettingsList(targetList);
-		
+
 		return siteSettingsResponse;
-		
+
 	}
 
 }

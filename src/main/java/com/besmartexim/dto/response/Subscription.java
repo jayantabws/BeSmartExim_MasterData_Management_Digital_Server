@@ -3,45 +3,45 @@ package com.besmartexim.dto.response;
 import java.util.List;
 
 public class Subscription {
-	
+
 	private Long id;
-	
+
 	private String name;
-	
+
 	private String description;
-	
+
 	private Long price;
-	
+
 	private Integer validityInDay;
-	
+
 	private String isCustom;
-	
+
 	private String isActive;
-	
+
 	private List<String> countryId;
-	
+
 	private List<String> continentId;
-	
+
 	private String dataAccess;
-	
+
 	private String downloadLimit;
-	
+
 	private String maxDownloadPerDay;
-	
+
 	private String workspaceLimit;
-	
+
 	private String support;
-	
-	private String ticketManager;	
-	
+
+	private String ticketManager;
+
 	private String recordPerWorkspace;
-	
+
 	private String subUserCount;
-	
+
 	private String displayFields;
-	
+
 	private String searchQueryPerDay;
-	
+
 	private String allowedChapter;
 
 	public Long getId() {
@@ -75,8 +75,6 @@ public class Subscription {
 	public void setPrice(Long price) {
 		this.price = price;
 	}
-
-
 
 	public Integer getValidityInDay() {
 		return validityInDay;
@@ -205,7 +203,5 @@ public class Subscription {
 	public void setAllowedChapter(String allowedChapter) {
 		this.allowedChapter = allowedChapter;
 	}
-
-	
 
 }

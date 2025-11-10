@@ -3,10 +3,10 @@ package com.besmartexim.dto.request;
 import javax.validation.constraints.NotBlank;
 
 public class MstContinentRequest {
-	
+
 	@NotBlank
 	private String name;
-	
+
 	@NotBlank
 	private String is_active;
 
@@ -25,7 +25,5 @@ public class MstContinentRequest {
 	public void setIs_active(String is_active) {
 		this.is_active = is_active;
 	}
-	
-	
 
 }

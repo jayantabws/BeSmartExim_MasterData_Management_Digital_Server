@@ -1,4 +1,5 @@
 package com.besmartexim.database.entity;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -15,8 +16,6 @@ public class MstContinent {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	
 
 	public Long getId() {
 		return id;
@@ -76,21 +75,20 @@ public class MstContinent {
 
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "is_active")
 	private String is_active;
-	
+
 	@Column(name = "created_by")
 	private Long created_by;
-	
+
 	@Column(name = "created_date")
 	private Date created_date;
-	
+
 	@Column(name = "modified_by")
 	private Long modified_by;
-	
+
 	@Column(name = "modified_date")
 	private Date modified_date;
-	
 
 }

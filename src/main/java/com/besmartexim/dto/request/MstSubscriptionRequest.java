@@ -4,29 +4,31 @@ import java.util.List;
 import java.util.Map;
 
 public class MstSubscriptionRequest {
-	
+
 	private String name;
-	
+
 	private String description;
-	
+
 	private Long price;
-	
+
 	private Integer validityDay;
-	
+
 	private String isCustom;
-	
+
 	private String isActive;
-	
+
 	private List<String> countryId;
-	
+
 	private List<String> continentId;
-	
-	/* private Long dataAccessMonth;
-	
-	private Long downloadLimit; */
-	
+
+	/*
+	 * private Long dataAccessMonth;
+	 * 
+	 * private Long downloadLimit;
+	 */
+
 	private Map<String, KeyObject> OtherAttributes;
-	
+
 	/*
 	 * private Long maxDownloadPerDay;
 	 * 
@@ -44,8 +46,6 @@ public class MstSubscriptionRequest {
 	 * 
 	 * private Long searchQueryPerDay;
 	 */
-
-
 
 	public String getName() {
 		return name;
@@ -78,8 +78,6 @@ public class MstSubscriptionRequest {
 	public void setPrice(Long price) {
 		this.price = price;
 	}
-
-
 
 	public Integer getValidityDay() {
 		return validityDay;

@@ -3,7 +3,7 @@ package com.besmartexim.dto.response;
 import java.util.List;
 
 public class TeamMemberResponse {
-	
+
 	List<TeamMember> temMemberList;
 
 	public List<TeamMember> getTemMemberList() {
@@ -13,7 +13,5 @@ public class TeamMemberResponse {
 	public void setTemMemberList(List<TeamMember> temMemberList) {
 		this.temMemberList = temMemberList;
 	}
-	
-	
 
 }
