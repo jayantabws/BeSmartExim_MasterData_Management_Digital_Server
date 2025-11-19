@@ -22,7 +22,7 @@ public class MasterdataController {
 	
 	
 	@GetMapping("/getdate")
-	public ResponseEntity<String> getPropertyValue(@RequestHeader(value = "accessedBy", required = true) Long accessedBy) {
+	public ResponseEntity<String> getPropertyValue() {
 		logger.info("Request : /masterdata-management/getdate");
 		return new ResponseEntity<>(appDate, HttpStatus.OK);
     }
