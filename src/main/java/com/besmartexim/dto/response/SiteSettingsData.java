@@ -8,7 +8,7 @@ public class SiteSettingsData {
 
 	private String siteMessage;
 	
-	private String siteMsg;
+	private String loginMsg;
 
 	public Long getId() {
 		return id;
@@ -34,14 +34,13 @@ public class SiteSettingsData {
 		this.siteMessage = siteMessage;
 	}
 
-	public String getSiteMsg() {
-		return siteMsg;
+	public String getLoginMsg() {
+		return loginMsg;
 	}
 
-	public void setSiteMsg(String siteMsg) {
-		this.siteMsg = siteMsg;
+	public void setLoginMsg(String loginMsg) {
+		this.loginMsg = loginMsg;
 	}
 
 	
-
 }
