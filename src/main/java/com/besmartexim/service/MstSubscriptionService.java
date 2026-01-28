@@ -200,7 +200,7 @@ public class MstSubscriptionService {
 		return mstSubscriptionResponse;
 	}
 
-	private List convertStringToList(String s1) {
+	private List<String> convertStringToList(String s1) {
 		if (s1 != null) {
 			// String s1="[a,b,c,d]";
 			String replace = s1.replace("[", "");

@@ -24,7 +24,7 @@ public class SiteSettingsController {
 	@Autowired
 	private SiteSettingsService siteSettingsService;
 
-	@RequestMapping(value = "/sitesettings", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/sitesettings", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> siteSettings() throws Exception {
 		logger.info("Request : /masterdata-management/sitesettings");
 		SiteSettingsResponse siteSettingsResponse = siteSettingsService.settingsList();

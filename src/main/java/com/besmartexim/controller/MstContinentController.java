@@ -8,14 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import com.besmartexim.dto.request.MstContinentRequest;
 import com.besmartexim.dto.response.MstContinentResponse;
 import com.besmartexim.service.MstContinentService;
@@ -30,17 +23,17 @@ public class MstContinentController {
 	@Autowired
 	private MstContinentService mstContinentService;
 
-	@RequestMapping(value = "/continent", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/continent", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> continentCreate(@RequestBody @Valid MstContinentRequest mstContinentRequest,
-			@RequestHeader(value = "accessedBy", required = true) Long accessedBy) throws Exception {
+			@RequestHeader(required = true) Long accessedBy) throws Exception {
 		logger.info("Request : /masterdata-management/continent");
 		mstContinentService.continentCreate(mstContinentRequest, accessedBy);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/continent/{continentId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity continentUpdate(@RequestBody @Valid MstContinentRequest mstContinentRequest,
-			@PathVariable Long continentId, @RequestHeader(value = "accessedBy", required = true) Long accessedBy)
+	@PutMapping(value = "/continent/{continentId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> continentUpdate(@RequestBody @Valid MstContinentRequest mstContinentRequest,
+			@PathVariable Long continentId, @RequestHeader(required = true) Long accessedBy)
 			throws Exception {
 		logger.info("accessedBy = " + accessedBy);
 
@@ -50,8 +43,8 @@ public class MstContinentController {
 
 	}
 
-	@RequestMapping(value = "/continent/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity continentList(@RequestHeader(value = "accessedBy", required = true) Long accessedBy)
+	@GetMapping(value = "/continent/list", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> continentList(@RequestHeader( required = true) Long accessedBy)
 			throws Exception {
 		logger.info("accessedBy = " + accessedBy);
 

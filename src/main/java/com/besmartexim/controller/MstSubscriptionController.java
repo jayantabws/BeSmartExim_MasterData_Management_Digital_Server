@@ -8,15 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import com.besmartexim.dto.request.MstSubscriptionRequest;
 import com.besmartexim.dto.response.MstSubscriptionResponse;
 import com.besmartexim.dto.response.Subscription;
@@ -32,17 +24,17 @@ public class MstSubscriptionController {
 	@Autowired
 	private MstSubscriptionService mstSubscriptionService;
 
-	@RequestMapping(value = "/subscription", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/subscription", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> subscriptionCreate(@RequestBody @Valid MstSubscriptionRequest mstSubscriptionRequest,
-			@RequestHeader(value = "accessedBy", required = true) Long accessedBy) throws Exception {
+			@RequestHeader(required = true) Long accessedBy) throws Exception {
 		logger.info("Request : /masterdata-management/subscription");
 		mstSubscriptionService.subscriptionCreate(mstSubscriptionRequest, accessedBy);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/subscription/{subscriptionId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity subscriptionUpdate(@RequestBody @Valid MstSubscriptionRequest mstSubscriptionRequest,
-			@PathVariable Long subscriptionId, @RequestHeader(value = "accessedBy", required = true) Long accessedBy)
+	@PutMapping(value = "/subscription/{subscriptionId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> subscriptionUpdate(@RequestBody @Valid MstSubscriptionRequest mstSubscriptionRequest,
+			@PathVariable Long subscriptionId, @RequestHeader(required = true) Long accessedBy)
 			throws Exception {
 		logger.info("accessedBy = " + accessedBy);
 
@@ -52,10 +44,10 @@ public class MstSubscriptionController {
 
 	}
 
-	@RequestMapping(value = "/subscription/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity subscriptionList(@RequestParam(required = false) String isCustom,
+	@GetMapping(value = "/subscription/list", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> subscriptionList(@RequestParam(required = false) String isCustom,
 			@RequestParam(required = false) String isActive,
-			@RequestHeader(value = "accessedBy", required = true) Long accessedBy) throws Exception {
+			@RequestHeader(required = true) Long accessedBy) throws Exception {
 
 		logger.info("accessedBy = " + accessedBy);
 
@@ -66,9 +58,9 @@ public class MstSubscriptionController {
 
 	}
 
-	@RequestMapping(value = "/subscription/{subscriptionId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity subscriptionList(@PathVariable Long subscriptionId,
-			@RequestHeader(value = "accessedBy", required = true) Long accessedBy) throws Exception {
+	@GetMapping(value = "/subscription/{subscriptionId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> subscriptionList(@PathVariable Long subscriptionId,
+			@RequestHeader(required = true) Long accessedBy) throws Exception {
 		logger.info("/subscription/{subscriptionId}");
 		logger.info("accessedBy = " + accessedBy);
 
