@@ -7,6 +7,8 @@ public class SiteSettingsData {
 	private String isMaintanance;
 
 	private String siteMessage;
+	
+	private String siteMsg;
 
 	public Long getId() {
 		return id;
@@ -31,5 +33,15 @@ public class SiteSettingsData {
 	public void setSiteMessage(String siteMessage) {
 		this.siteMessage = siteMessage;
 	}
+
+	public String getSiteMsg() {
+		return siteMsg;
+	}
+
+	public void setSiteMsg(String siteMsg) {
+		this.siteMsg = siteMsg;
+	}
+
+	
 
 }

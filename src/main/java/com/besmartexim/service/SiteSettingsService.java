@@ -42,5 +42,15 @@ public class SiteSettingsService {
 		return siteSettingsResponse;
 
 	}
+	
+	
+	public Long updateSiteSettings(SiteSettings siteSettings) throws Exception {
+		
+		Optional<SiteSettings> user = this.siteSettingsRepository.findById(siteSettings.getId());
+		if(user.isPresent()) {
+			siteSettings = this.siteSettingsRepository.saveAndFlush(siteSettings);
+		}
+		 return siteSettings.getId();
+	}
 
 }

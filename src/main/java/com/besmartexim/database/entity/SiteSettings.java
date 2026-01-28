@@ -21,6 +21,9 @@ public class SiteSettings {
 
 	@Column(name = "site_message")
 	private String siteMessage;
+	
+	@Column(name = "site_msg")
+	private String siteMsg;
 
 	public Long getId() {
 		return id;
@@ -46,4 +49,13 @@ public class SiteSettings {
 		this.siteMessage = siteMessage;
 	}
 
+	public String getSiteMsg() {
+		return siteMsg;
+	}
+
+	public void setSiteMsg(String siteMsg) {
+		this.siteMsg = siteMsg;
+	}
+
+	
 }
