@@ -32,7 +32,7 @@ public class SiteSettingsController {
 	}
 	
 	
-	@PutMapping(value = "/updatesitesetting", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/updatesitesetting", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> updateSiteSettingsMsg(@RequestBody(required = true) @Valid SiteSettings siteSettings, 
 			@RequestHeader(required = true) Long accessedBy) throws Exception {
 		logger.info("Request : /masterdata-management/updatesitemsg");
