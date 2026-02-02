@@ -44,6 +44,8 @@ public class Subscription {
 
 	private String allowedChapter;
 
+	private String indepthAccess;
+	
 	public Long getId() {
 		return id;
 	}
@@ -202,6 +204,14 @@ public class Subscription {
 
 	public void setAllowedChapter(String allowedChapter) {
 		this.allowedChapter = allowedChapter;
+	}
+
+	public String getIndepthAccess() {
+		return indepthAccess;
+	}
+
+	public void setIndepthAccess(String indepthAccess) {
+		this.indepthAccess = indepthAccess;
 	}
 
 }

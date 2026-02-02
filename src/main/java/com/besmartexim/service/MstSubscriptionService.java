@@ -42,6 +42,7 @@ public class MstSubscriptionService {
 		mstSubscription.setPrice(request.getPrice());
 		mstSubscription.setValidityInDay(request.getValidityDay());
 		mstSubscription.setIsCustom(request.getIsCustom());
+		mstSubscription.setIndepthAccess(request.getIndepthAccess());
 		mstSubscription.setCreatedBy(accessedBy);
 		mstSubscription.setCreatedDate(new Date());
 
@@ -81,7 +82,7 @@ public class MstSubscriptionService {
 
 		MstSubscription mstSubscription = new MstSubscription();
 		mstSubscription.setId(subscriptionId);
-		;
+		
 		mstSubscription.setName(request.getName());
 		mstSubscription.setDescription(request.getDescription());
 		mstSubscription.setIsActive(request.getIsActive());
@@ -90,6 +91,7 @@ public class MstSubscriptionService {
 		mstSubscription.setModifiedBy(accessedBy);
 		mstSubscription.setModifiedDate(new Date());
 		mstSubscription.setValidityInDay(request.getValidityDay());
+		mstSubscription.setIndepthAccess(request.getIndepthAccess());
 		mstSubscriptionRepository.save(mstSubscription);
 
 		mstSubscriptionDetailsRepository.deleteBySubscriptionid(subscriptionId);

@@ -47,6 +47,9 @@ public class MstSubscription {
 
 	@Column(name = "modified_date")
 	private Date modifiedDate;
+	
+	@Column(name = "indepth_access")
+	private String indepthAccess;
 
 	public Long getId() {
 		return id;
@@ -134,6 +137,14 @@ public class MstSubscription {
 
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
+	}
+
+	public String getIndepthAccess() {
+		return indepthAccess;
+	}
+
+	public void setIndepthAccess(String indepthAccess) {
+		this.indepthAccess = indepthAccess;
 	}
 
 }

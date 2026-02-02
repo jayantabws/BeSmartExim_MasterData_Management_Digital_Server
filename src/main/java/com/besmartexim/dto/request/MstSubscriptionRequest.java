@@ -20,6 +20,8 @@ public class MstSubscriptionRequest {
 	private List<String> countryId;
 
 	private List<String> continentId;
+	
+	private String indepthAccess;
 
 	/*
 	 * private Long dataAccessMonth;
@@ -117,6 +119,14 @@ public class MstSubscriptionRequest {
 
 	public void setContinentId(List<String> continentId) {
 		this.continentId = continentId;
+	}
+
+	public String getIndepthAccess() {
+		return indepthAccess;
+	}
+
+	public void setIndepthAccess(String indepthAccess) {
+		this.indepthAccess = indepthAccess;
 	}
 
 }
