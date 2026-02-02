@@ -33,14 +33,18 @@ public class MstSubscriptionController {
 	}
 
 	@PutMapping(value = "/subscription/{subscriptionId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> subscriptionUpdate(@RequestBody @Valid MstSubscriptionRequest mstSubscriptionRequest,
+	public ResponseEntity<String> subscriptionUpdate(@RequestBody @Valid MstSubscriptionRequest mstSubscriptionRequest,
 			@PathVariable Long subscriptionId, @RequestHeader(required = true) Long accessedBy)
 			throws Exception {
 		logger.info("accessedBy = " + accessedBy);
-
-		mstSubscriptionService.subscriptionUpdate(mstSubscriptionRequest, subscriptionId, accessedBy);
-
-		return new ResponseEntity<>(HttpStatus.OK);
+		String msg = null;
+		
+		if(subscriptionId > 0) {
+			msg = mstSubscriptionService.subscriptionUpdate(mstSubscriptionRequest, subscriptionId, accessedBy);
+		} else {
+			msg = "Invalid subscription Id";
+		}
+		return ResponseEntity.ok(msg);
 
 	}
 

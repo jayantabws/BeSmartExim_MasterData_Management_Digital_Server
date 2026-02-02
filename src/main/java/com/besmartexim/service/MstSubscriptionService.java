@@ -75,54 +75,60 @@ public class MstSubscriptionService {
 	}
 
 	@Transactional
-	public void subscriptionUpdate(@Valid MstSubscriptionRequest request, Long subscriptionId, Long accessedBy) {
-		// Optional<MstSubscription> list =
-		// mstSubscriptionRepository.findById(subscriptionId);
-		// MstSubscription mstSubscription = list.get();
+	public String subscriptionUpdate(@Valid MstSubscriptionRequest request, Long subscriptionId, Long accessedBy) {
 
-		MstSubscription mstSubscription = new MstSubscription();
-		mstSubscription.setId(subscriptionId);
-		
-		mstSubscription.setName(request.getName());
-		mstSubscription.setDescription(request.getDescription());
-		mstSubscription.setIsActive(request.getIsActive());
-		mstSubscription.setPrice(request.getPrice());
-		mstSubscription.setIsCustom(request.getIsCustom());
-		mstSubscription.setModifiedBy(accessedBy);
-		mstSubscription.setModifiedDate(new Date());
-		mstSubscription.setValidityInDay(request.getValidityDay());
-		mstSubscription.setIndepthAccess(request.getIndepthAccess());
-		mstSubscriptionRepository.save(mstSubscription);
+		String msg = null;
+		try {
+			
+			MstSubscription mstSubscription = new MstSubscription();
+			mstSubscription.setId(subscriptionId);
+			
+			mstSubscription.setName(request.getName());
+			mstSubscription.setDescription(request.getDescription());
+			mstSubscription.setIsActive(request.getIsActive());
+			mstSubscription.setPrice(request.getPrice());
+			mstSubscription.setIsCustom(request.getIsCustom());
+			mstSubscription.setModifiedBy(accessedBy);
+			mstSubscription.setModifiedDate(new Date());
+			mstSubscription.setValidityInDay(request.getValidityDay());
+			mstSubscription.setIndepthAccess(request.getIndepthAccess());
+			mstSubscriptionRepository.save(mstSubscription);
 
-		mstSubscriptionDetailsRepository.deleteBySubscriptionid(subscriptionId);
+			mstSubscriptionDetailsRepository.deleteBySubscriptionid(subscriptionId);
 
-		List<SubscriptionDetails> subDetailList = new ArrayList<SubscriptionDetails>();
+			List<SubscriptionDetails> subDetailList = new ArrayList<SubscriptionDetails>();
 
-		for (Map.Entry<String, KeyObject> keyObject : request.getOtherAttributes().entrySet()) {
-			SubscriptionDetails sbd = new SubscriptionDetails();
-			sbd.setSubscriptionid(mstSubscription.getId());
-			sbd.setShort_key(keyObject.getKey());
+			for (Map.Entry<String, KeyObject> keyObject : request.getOtherAttributes().entrySet()) {
+				SubscriptionDetails sbd = new SubscriptionDetails();
+				sbd.setSubscriptionid(mstSubscription.getId());
+				sbd.setShort_key(keyObject.getKey());
 
-			KeyObject ko = keyObject.getValue();
-			sbd.setKey_desc(ko.getKeyDesc());
-			sbd.setKey_fullform(ko.getKeyFullName());
-			sbd.setKey_value(ko.getKeyValue());
-			sbd.setValue_desc(ko.getValueDesc());
+				KeyObject ko = keyObject.getValue();
+				sbd.setKey_desc(ko.getKeyDesc());
+				sbd.setKey_fullform(ko.getKeyFullName());
+				sbd.setKey_value(ko.getKeyValue());
+				sbd.setValue_desc(ko.getValueDesc());
 
-			subDetailList.add(sbd);
+				subDetailList.add(sbd);
 
+			}
+
+			mstSubscriptionDetailsRepository.saveAll(subDetailList);
+
+			supportedCountryRepository.deleteBySubscriptionid(subscriptionId);
+			SubscriptionCountries subscriptionCountries = new SubscriptionCountries();
+			subscriptionCountries.setSubscriptionid(mstSubscription.getId());
+			subscriptionCountries.setContinent_id(request.getContinentId().toString());
+			subscriptionCountries.setCountry_id(request.getCountryId().toString());
+
+			supportedCountryRepository.save(subscriptionCountries);
+			
+			msg = "Update successfully";
+			
+		} catch (Exception e) {
+			msg = "Somthing wrong. Please try again";
 		}
-
-		mstSubscriptionDetailsRepository.saveAll(subDetailList);
-
-		supportedCountryRepository.deleteBySubscriptionid(subscriptionId);
-		SubscriptionCountries subscriptionCountries = new SubscriptionCountries();
-		subscriptionCountries.setSubscriptionid(mstSubscription.getId());
-		subscriptionCountries.setContinent_id(request.getContinentId().toString());
-		subscriptionCountries.setCountry_id(request.getCountryId().toString());
-
-		supportedCountryRepository.save(subscriptionCountries);
-
+		return msg;
 	}
 
 	public MstSubscriptionResponse subscriptionList(String isCustom, String isActive, Long accessedBy) {
