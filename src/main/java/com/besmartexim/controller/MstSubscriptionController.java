@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.besmartexim.dto.request.MstSubscriptionRequest;
+import com.besmartexim.dto.response.FullSubscription;
 import com.besmartexim.dto.response.MstSubscriptionResponse;
 import com.besmartexim.dto.response.Subscription;
 import com.besmartexim.service.MstSubscriptionService;
@@ -69,6 +70,18 @@ public class MstSubscriptionController {
 		logger.info("accessedBy = " + accessedBy);
 
 		Subscription subscription = mstSubscriptionService.getSubscriptionDetails(subscriptionId, accessedBy);
+
+		return new ResponseEntity<>(subscription, HttpStatus.OK);
+
+	}
+	
+	@GetMapping(value = "/subscription/full/{subscriptionId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> getFullSubscriptionDetails(@PathVariable Long subscriptionId,
+			@RequestHeader(required = true) Long accessedBy) throws Exception {
+		logger.info("/subscription/full/{subscriptionId}");
+
+
+		FullSubscription subscription = mstSubscriptionService.getFullSubscriptionDetails(subscriptionId, accessedBy);
 
 		return new ResponseEntity<>(subscription, HttpStatus.OK);
 

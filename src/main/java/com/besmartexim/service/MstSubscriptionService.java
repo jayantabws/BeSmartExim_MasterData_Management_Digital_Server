@@ -3,6 +3,7 @@ package com.besmartexim.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ import com.besmartexim.database.repository.MstSubscriptionRepository;
 import com.besmartexim.database.repository.SupportedCountryRepository;
 import com.besmartexim.dto.request.KeyObject;
 import com.besmartexim.dto.request.MstSubscriptionRequest;
+import com.besmartexim.dto.response.FullSubscription;
 import com.besmartexim.dto.response.MstSubscriptionResponse;
 import com.besmartexim.dto.response.Subscription;
 
@@ -266,6 +268,40 @@ public class MstSubscriptionService {
 				}
 
 			}
+
+			List<SubscriptionCountries> countList = supportedCountryRepository.findBySubscriptionid(subscriptionId);
+
+			for (SubscriptionCountries mstcdetails : countList) {
+				subscription.setContinentId(convertStringToList(mstcdetails.getContinent_id()));
+				subscription.setCountryId(convertStringToList(mstcdetails.getCountry_id()));
+			}
+		}
+
+		return subscription;
+	}
+	
+	
+	public FullSubscription getFullSubscriptionDetails(Long subscriptionId, Long accessedBy) {
+
+		MstSubscription mstSub = mstSubscriptionRepository.findById(subscriptionId).get();
+		FullSubscription subscription = new FullSubscription();
+		BeanUtils.copyProperties(mstSub, subscription);
+
+		if (null != mstSub) {
+			List<SubscriptionDetails> subDlist = mstSubscriptionDetailsRepository.findBySubscriptionid(subscriptionId);
+
+			Map<String, KeyObject> map = new HashMap<String, KeyObject>();
+
+			for (SubscriptionDetails mstSubdetails : subDlist) {
+				KeyObject key = new KeyObject();
+				key.setKeyFullName(mstSubdetails.getKey_fullform());
+				key.setKeyDesc(mstSubdetails.getKey_desc());
+				key.setKeyValue(mstSubdetails.getKey_value());
+				key.setValueDesc(mstSubdetails.getValue_desc());
+
+				map.put(mstSubdetails.getShort_key(), key);
+			}
+			subscription.setOtherAttributes(map);
 
 			List<SubscriptionCountries> countList = supportedCountryRepository.findBySubscriptionid(subscriptionId);
 
