@@ -28,19 +28,19 @@ public class MstSubscriptionController {
 	@PostMapping(value = "/subscription", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> subscriptionCreate(@RequestBody @Valid MstSubscriptionRequest mstSubscriptionRequest,
 			@RequestHeader(required = true) Long accessedBy) throws Exception {
-		logger.info("Request : /masterdata-management/subscription");
+		logger.info("Request : /masterdata-management/subscription create");
 		mstSubscriptionService.subscriptionCreate(mstSubscriptionRequest, accessedBy);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 	@PutMapping(value = "/subscription/{subscriptionId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> subscriptionUpdate(@RequestBody @Valid MstSubscriptionRequest mstSubscriptionRequest,
-			@PathVariable Long subscriptionId, @RequestHeader(required = true) Long accessedBy)
-			throws Exception {
+			@PathVariable Long subscriptionId, @RequestHeader(required = true) Long accessedBy) throws Exception {
+		logger.info("Request : /masterdata-management/subscription Update");
 		logger.info("accessedBy = " + accessedBy);
 		String msg = null;
-		
-		if(subscriptionId > 0) {
+
+		if (subscriptionId > 0) {
 			msg = mstSubscriptionService.subscriptionUpdate(mstSubscriptionRequest, subscriptionId, accessedBy);
 		} else {
 			msg = "Invalid subscription Id";
@@ -50,40 +50,39 @@ public class MstSubscriptionController {
 	}
 
 	@GetMapping(value = "/subscription/list", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> subscriptionList(@RequestParam(required = false) String isCustom,
-			@RequestParam(required = false) String isActive,
-			@RequestHeader(required = true) Long accessedBy) throws Exception {
-
+	public ResponseEntity<MstSubscriptionResponse> subscriptionList(@RequestParam(required = false) String isCustom,
+			@RequestParam(required = false) String isActive, @RequestHeader(required = true) Long accessedBy)
+			throws Exception {
+		logger.info("Request : /masterdata-management/subscriptions list");
 		logger.info("accessedBy = " + accessedBy);
 
 		MstSubscriptionResponse mstSubscriptionResponse = mstSubscriptionService.subscriptionList(isCustom, isActive,
 				accessedBy);
 
-		return new ResponseEntity<>(mstSubscriptionResponse, HttpStatus.OK);
+		return new ResponseEntity<MstSubscriptionResponse>(mstSubscriptionResponse, HttpStatus.OK);
 
 	}
 
 	@GetMapping(value = "/subscription/{subscriptionId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> subscriptionList(@PathVariable Long subscriptionId,
+	public ResponseEntity<Subscription> subscriptionList(@PathVariable Long subscriptionId,
 			@RequestHeader(required = true) Long accessedBy) throws Exception {
-		logger.info("/subscription/{subscriptionId}");
+		logger.info("/subscription/{subscriptionId}  => get subscription");
 		logger.info("accessedBy = " + accessedBy);
 
 		Subscription subscription = mstSubscriptionService.getSubscriptionDetails(subscriptionId, accessedBy);
 
-		return new ResponseEntity<>(subscription, HttpStatus.OK);
+		return new ResponseEntity<Subscription>(subscription, HttpStatus.OK);
 
 	}
-	
-	@GetMapping(value = "/subscription/full/{subscriptionId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> getFullSubscriptionDetails(@PathVariable Long subscriptionId,
-			@RequestHeader(required = true) Long accessedBy) throws Exception {
-		logger.info("/subscription/full/{subscriptionId}");
 
+	@GetMapping(value = "/subscription/full/{subscriptionId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<FullSubscription> getFullSubscriptionDetails(@PathVariable Long subscriptionId,
+			@RequestHeader(required = true) Long accessedBy) throws Exception {
+		logger.info("/subscription/full/{subscriptionId} => get full subscription");
 
 		FullSubscription subscription = mstSubscriptionService.getFullSubscriptionDetails(subscriptionId, accessedBy);
 
-		return new ResponseEntity<>(subscription, HttpStatus.OK);
+		return new ResponseEntity<FullSubscription>(subscription, HttpStatus.OK);
 
 	}
 
